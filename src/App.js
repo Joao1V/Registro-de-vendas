@@ -4,6 +4,7 @@ import './custom.less';
 import ListUsers from "./components/ListUsers";
 import UserRegister from "./components/UserRegister";
 import 'antd/dist/antd.css';
+import HomePage from "./pages/HomePage";
 
 const App = () => {
     const usersData = [{
@@ -31,15 +32,20 @@ const App = () => {
     }
     console.log(users)
     return (
-        <div>
-            <h1>Registro de vendas</h1>
-            <div> cade {counter}</div>
-            <div>
+        <div className={"container"}>
+            <header className={"o-header"}>
+                <div>lala</div>
+            </header>
+            <aside className={"o-aside"}>
+                <div>piriri popopo</div>
+            </aside>
+            <main className={"o-main"}>
                 <UserRegister addUser={addUser}/>
-            </div>
-            <div>
-             <ListUsers users={users.current} />
-            </div>
+                <ListUsers users={users.current}/>
+            </main>
+            <footer className={"o-footer"}>
+                <div>krirkirki</div>
+            </footer>
         </div>
     )
 }

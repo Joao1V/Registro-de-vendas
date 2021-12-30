@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Button, Select} from "antd";
+import {maskBRL} from "./mask";
 
 const {Option} = Select;
 
@@ -56,18 +57,16 @@ const UserRegister = props => {
                     </div>
                     <div className={"field"}>
                         <input className="input-field" placeholder="Digite o valor" type="text"
-                               onChange={e => setUser({...user, buy: e.target.value})} value={user.buy}/>
+                               onChange={e => setUser({...user, buy:maskBRL(e.target.value)})} value={user.buy}/>
                     </div>
-                    <div className={"field"}>
-                        <Select value={user.renovation} placeholder={"Selecione"} onChange={e =>  setUser({...user, renovation: e}) }>
+                    <div className={"field w-12"}>
+                        <Select value={user.renovation} placeholder="Selecione" onChange={e =>  setUser({...user, renovation: e}) }>
                             <Option value="Sim">Sim</Option>
                             <Option value="Nao">Não</Option>
                         </Select>
                     </div>
                     <div className={"field"}>
-                        <Button onClick={(e) => onClick(e)} type="submit">
-                            Salvar
-                        </Button>
+                        <Button onClick={(e) => onClick(e)} type="primary">Salvar</Button>
                     </div>
                 </form>
 

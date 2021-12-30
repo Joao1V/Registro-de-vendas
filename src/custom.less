@@ -7,6 +7,41 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.container {
+  display: grid;
+  grid-template-areas: "header header header"
+  "aside main main"
+  "footer footer footer";
+
+}
+
+.o-header {
+
+  grid-area: header;
+  background-color: red;
+  height: 50px;
+}
+
+.o-aside {
+  background-color: black;
+  color: white;
+  width: 10vw;
+  grid-area: aside;
+}
+
+.o-main {
+  background-color: aqua;
+  height: 80vh;
+  width: 90vw ;
+  grid-area: main;
+}
+
+.o-footer {
+  grid-area: footer;
+  background-color: cornflowerblue;
+  height: 50px;
+}
+
 .table {
   border: solid 1px black;
   display: flex;
@@ -17,14 +52,15 @@ body {
 
 .wrap {
   display: flex;
-  row-gap: 10px;
-
 }
 
 .field {
-  margin: 5px;
+  margin: 4px;
 }
 
+.w-12 {
+  width: 120px;
+}
 .input-field {
   border: 1px solid #d9d9d9;
   border-radius: 4px;
@@ -34,5 +70,4 @@ body {
 }
 .td {
   flex:2;
-
 }
