@@ -7,25 +7,56 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#components-layout-demo-responsive .logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+
+#root {
+  height: 100%;
+}
+
+.p-relative{
+  position: relative;
+}
+
+.p-userHeader {
+  position: absolute;
+  margin-top: 7px;
+}
+
 .container {
   display: grid;
-  grid-template-areas: "header header header"
+  grid-template-areas: "aside header header"
   "aside main main"
   "footer footer footer";
 
 }
 
-.o-header {
+ul, li {
+  list-style: none;
+}
 
+.o-header {
+  display: grid;
   grid-area: header;
   background-color: red;
   height: 50px;
 }
 
+.p-relative{
+  position: relative;
+}
+.p-userHeader{
+  position: absolute;
+  top: 7px;
+  right: 15px;
+}
 .o-aside {
   background-color: black;
   color: white;
-  width: 10vw;
+  width: 20vw;
   grid-area: aside;
 }
 
