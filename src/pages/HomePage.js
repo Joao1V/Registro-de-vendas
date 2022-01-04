@@ -4,24 +4,29 @@ import { Layout, Menu, Icon, Dropdown, Button } from 'antd';
 import ListUsers from "../components/ListUsers";
 import UserRegister from "../components/UserRegister";
 import 'antd/dist/antd.css';
+import moment from "moment";
 
 const HomePage = () => {
+const now = moment().format('DD/MMM/YYYY');
     const usersData = [{
         id:1,
         name: 'Joao',
+        data: now,
         buy: 'R$ 40,00',
         renovation: 'Sim'
     },
         {
             id:2,
             name: 'cebola',
+            data: now,
             buy: 'R$ 40,00',
             renovation: 'Sim'
         }
     ]
 
 
-    const users = useRef(usersData);
+    const users = useRef(usersData); //está usando o current por causa do ref
+    const [loading, setLoading] = useState(false)
     const [counter, setCounter] = useState(users.current.length)
 
     const addUser = (user) => {
@@ -29,9 +34,16 @@ const HomePage = () => {
         users.current.push(user);
         setCounter(counter+1)
     }
-    console.log(users)
 
-    const { Header, Content, Footer, Sider } = Layout;
+    const deleteUser = (id) => {
+        console.log(id)
+        setLoading(true)
+        users.current.filter((user) => user.id !== id)
+        console.log(users.current)
+        setLoading(false)
+    }
+
+    const { Header, Content, Sider } = Layout;
 
     const menu = (
         <Menu>
@@ -55,7 +67,7 @@ const HomePage = () => {
                 }}
 
             >
-                <Menu style={{marginTop:50}} theme="dark" mode="inline" defaultSelectedKeys={['2']}>
+                <Menu style={{marginTop:80}} theme="dark" mode="inline" defaultSelectedKeys={['2']}>
                     <Menu.Item key="1">
                         <Icon type="pie-chart" />
                         <span className="nav-text">Dashboard</span>
@@ -69,20 +81,22 @@ const HomePage = () => {
             <Layout>
                 <Header style={{ background: '#fff', padding: 0 }}>
                     <div>
-                            <Dropdown className={"p-relative"}  overlay={menu}  style = {{ backgroundColor: "blue", position:"relative" }} >
+                        <h1 style={{textDecoration: "overline", marginLeft: 25, fontSize:25}}>Registrar Venda</h1>
+                            <Dropdown overlay={menu}  style = {{ backgroundColor: "blue", position:"relative" }} >
                                 <Button className={"p-userHeader"}
                                         style={{position:"absolute", marginTop:7}}><Icon type="user" />JoaoVictor
                                 </Button>
                             </Dropdown>
                     </div>
                 </Header>
-                <Content style={{ margin: '24px 16px 0' }}>
+                <Content style={{ margin: '24px 16px 0' , minHeight: 600}}>
                     <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
                         <UserRegister addUser={addUser}/>
-                        <ListUsers users={users.current}/>
+                        <ListUsers users={users.current} deleteUser={deleteUser}/>
                     </div>
                 </Content>
-                <Footer style={{ textAlign: 'center' }}>Bluetrix ©2022 Created by Bluetrix</Footer>
+                <footer style={{textAlign:"center"}}>JoaoV ©2022 Created by JoaoV</footer>
+
             </Layout>
         </Layout>
     )

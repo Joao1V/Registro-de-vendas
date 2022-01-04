@@ -1,44 +1,51 @@
 import React, { useState, useEffect } from 'react'
+import { Table, Divider, Icon } from 'antd';
+
 
 const ListUsers = (props) => {
+    const columns = [
+        {
+            title: 'Nome',
+            dataIndex: 'name',
+            key: 'name',
 
-    const [data, setData] = useState(props)
-    console.log(data)
-
+        },
+        {
+            title: 'Data',
+            dataIndex: 'data',
+            key: 'data',
+        },
+        {
+            title: 'Valor',
+            dataIndex: 'buy',
+            key: 'buy',
+        },
+        {
+            title: 'Já é cliente?',
+            dataIndex: 'renovation',
+            key: 'renovation',
+        },
+        {
+            title: 'Ações',
+            key: 'id',
+            render: (text, record) => (
+                <span>
+                <a><Icon style={{fontSize: 16}} type="edit" /></a>
+                <Divider type="vertical" />
+                <a><Icon style={{fontSize: 16}} type="delete" onClick={(e) => console.log(record.id)} /></a>
+            </span>
+            ),
+        },
+    ];
     useEffect(() => {
-        console.log(data.users)
-        
+        console.log('asdasd')
+        console.log(props)
     }, [])
+
 
     return (
         <div>
-            <div> 
-                <div> {/* tbody */}
-                    <div className="table"> {/*tr*/}
-                        <div className='td'>Nome</div>
-                         <div className='td'>Valor</div>
-                         <div className='td'>Já é cliente?</div>
-                    </div> 
-                </div>
-                
-                {/*tbody*/}
-                <div>
-                    {data.users.length > 0 ? (
-                        data.users.map((user) => (
-                        <div className="table" key={user.id}> {/*tr*/}
-                            <div className='td'>{user.name}</div> 
-                            <div className='td'>{user.buy}</div> 
-                            <div className='td'>{user.renovation}</div> 
-                        </div> 
-                        ))
-                    ) : (
-                        <div>
-                            <div>Sem registro</div>
-                        </div>
-                    )}
-                </div> 
-
-            </div>
+            <Table columns={columns} dataSource={props.users} />
         </div>
     )
 }
