@@ -6,7 +6,7 @@ const ListUsers = (props) => {
     const columns = [
         {
             title: 'Nome',
-            dataIndex: 'name',
+            dataIndex: 'name', //Define o que será escrito na minha linha
             key: 'name',
 
         },
@@ -27,12 +27,12 @@ const ListUsers = (props) => {
         },
         {
             title: 'Ações',
-            key: 'id',
+            key: 'Acoes',
             render: (text, record) => (
                 <span>
-                <a><Icon style={{fontSize: 16}} type="edit" /></a>
+                <a><Icon title={"Editar"} style={{fontSize: 16}} type="edit" /></a>
                 <Divider type="vertical" />
-                <a><Icon style={{fontSize: 16}} type="delete" onClick={(e) => console.log(record.id)} /></a>
+                <a><Icon title={"Deletar"} style={{fontSize: 16}} type="delete" onClick={() => props.deleteUser(record.id)} /></a>
             </span>
             ),
         },

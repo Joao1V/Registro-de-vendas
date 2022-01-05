@@ -26,21 +26,20 @@ const now = moment().format('DD/MMM/YYYY');
 
 
     const users = useRef(usersData); //está usando o current por causa do ref
-    const [loading, setLoading] = useState(false)
     const [counter, setCounter] = useState(users.current.length)
 
     const addUser = (user) => {
-        user.id = users.length + 1;
+        user.id = users.current.length +1;
         users.current.push(user);
-        setCounter(counter+1)
+        setCounter(counter +1)
     }
 
     const deleteUser = (id) => {
-        console.log(id)
-        setLoading(true)
-        users.current.filter((user) => user.id !== id)
+        users.current = users.current.filter((user) => user.id !== id)
         console.log(users.current)
-        setLoading(false)
+        console.log(id)
+        setCounter(counter -1)
+
     }
 
     const { Header, Content, Sider } = Layout;
@@ -93,10 +92,10 @@ const now = moment().format('DD/MMM/YYYY');
                     <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
                         <UserRegister addUser={addUser}/>
                         <ListUsers users={users.current} deleteUser={deleteUser}/>
+                       
                     </div>
                 </Content>
                 <footer style={{textAlign:"center"}}>JoaoV ©2022 Created by JoaoV</footer>
-
             </Layout>
         </Layout>
     )
