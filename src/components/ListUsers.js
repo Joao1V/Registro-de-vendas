@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Divider, Icon } from 'antd';
-
+import ModalEdit from "./ModalEdit";
 
 const ListUsers = (props) => {
     const columns = [
@@ -29,11 +29,11 @@ const ListUsers = (props) => {
             title: 'Ações',
             key: 'Acoes',
             render: (text, record) => (
-                <span>
-                <a><Icon title={"Editar"} style={{fontSize: 16}} type="edit" /></a>
+                <div style={{display: "flex", alignItems:"center"}} >
+                <ModalEdit/>
                 <Divider type="vertical" />
-                <a><Icon title={"Deletar"} style={{fontSize: 16}} type="delete" onClick={() => props.deleteUser(record.id)} /></a>
-            </span>
+                    <a><Icon title={"Deletar"} style={{fontSize: 16}} type="delete" onClick={() => props.deleteUser(record.id)} /></a>
+            </div>
             ),
         },
     ];
