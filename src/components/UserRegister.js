@@ -30,14 +30,13 @@ const UserRegister = props => {
     }
 
     const [user, setUser] = useState(initialFormState)
-    const [loading, setLoading] = useState()
 
     function handleChange(value) {
         console.log(`selected ${value}`);
 
     }
 
-    const onClick = (e) =>{
+    const onClick = (e) => {
         e.preventDefault()
         console.log('ta clicando')
         console.log(user)
@@ -51,35 +50,35 @@ const UserRegister = props => {
 
     return (
         <div>
-                <form
-                    className="d-flex"
-                >
-                    <div className={"field"}>
-                        <input className="input-field" placeholder="Nome" type="text"
-                               onChange={e => setUser({...user, name: e.target.value})} value={user.name}/>
-                    </div>
-                    <div className={"field"}>
-                        <input className="input-field" placeholder="Digite o valor" type="text"
-                               onChange={e => setUser({...user, buy:maskBRL(e.target.value)})} value={user.buy}/>
-                    </div>
-                    <div className={"field w-12"}>
-                        <Select
-                            showSearch
-                            onChange={e =>  setUser({...user, renovation: e}) }
-                            placeholder="Já é cliente?"
-                            optionFilterProp="children"
-                            onFocus={onFocus}
-                            onBlur={onBlur}
-                            onSearch={onSearch}
-                        >
-                            <Option value="Sim">Sim</Option>
-                            <Option value="Não">Não</Option>
-                        </Select>
-                    </div>
-                    <div className={"field"}>
-                        <Button onClick={(e) => onClick(e)} type="primary">Salvar</Button>
-                    </div>
-                </form>
+            <form
+                className="d-flex"
+            >
+                <div className={"field"}>
+                    <input className="input-field" placeholder="Nome" type="text"
+                           onChange={e => setUser({...user, name: e.target.value})} value={user.name}/>
+                </div>
+                <div className={"field"}>
+                    <input className="input-field" placeholder="Digite o valor" type="text"
+                           onChange={e => setUser({...user, buy: maskBRL(e.target.value)})} value={user.buy}/>
+                </div>
+                <div className={"field w-12"}>
+                    <Select
+                        showSearch
+                        onChange={e => setUser({...user, renovation: e})}
+                        placeholder="Já é cliente?"
+                        optionFilterProp="children"
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        onSearch={onSearch}
+                    >
+                        <Option value="Sim">Sim</Option>
+                        <Option value="Não">Não</Option>
+                    </Select>
+                </div>
+                <div className={"field"}>
+                    <Button onClick={(e) => onClick(e)} type="primary">Salvar</Button>
+                </div>
+            </form>
         </div>
     )
 }

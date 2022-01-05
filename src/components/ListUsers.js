@@ -30,7 +30,7 @@ const ListUsers = (props) => {
             key: 'Acoes',
             render: (text, record) => (
                 <div style={{display: "flex", alignItems:"center"}} >
-                <ModalEdit/>
+                <ModalEdit user={record} />
                 <Divider type="vertical" />
                     <a><Icon title={"Deletar"} style={{fontSize: 16}} type="delete" onClick={() => props.deleteUser(record.id)} /></a>
             </div>
@@ -38,7 +38,6 @@ const ListUsers = (props) => {
         },
     ];
     useEffect(() => {
-        console.log('asdasd')
         console.log(props)
     }, [])
 
