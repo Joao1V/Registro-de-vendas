@@ -39,9 +39,11 @@ const HomePage = () => {
         console.log(users.current)
         console.log(id)
         setCounter(counter - 1)
-
     }
-
+    const updateUser = (user) => {
+        users.current.splice(user.id -1,1, user)
+        setCounter(counter +1) // é muito rapido a execucao, por isso coloca o counter
+    }
     const {Header, Content, Sider} = Layout;
 
     const menu = (
@@ -80,7 +82,7 @@ const HomePage = () => {
             <Layout>
                 <Header style={{background: '#fff', padding: 0}}>
                     <div>
-                        <h1 style={{textDecoration: "overline", marginLeft: 25, fontSize: 25}}>Registrar Venda</h1>
+                        <h1 style={{marginLeft: 25, fontSize: 25}}>Registrar Venda</h1>
                         <Dropdown overlay={menu} style={{backgroundColor: "blue", position: "relative"}}>
                             <Button className={"p-userHeader"}
                                     style={{position: "absolute", marginTop: 7}}><Icon type="user"/>JoaoVictor
@@ -91,7 +93,7 @@ const HomePage = () => {
                 <Content style={{margin: '24px 16px 0', minHeight: 600}}>
                     <div style={{padding: 24, background: '#fff', minHeight: 360}}>
                         <UserRegister addUser={addUser}/>
-                        <ListUsers users={users.current} deleteUser={deleteUser}/>
+                        <ListUsers users={users.current} updateUser={(e) => {updateUser(e)}} deleteUser={deleteUser}/>
 
                     </div>
                 </Content>
