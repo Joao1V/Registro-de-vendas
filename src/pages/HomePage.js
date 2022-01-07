@@ -5,8 +5,13 @@ import '../custom.less';
 import 'antd/dist/antd.css';
 import {Layout, Menu, Icon, Dropdown, Button} from 'antd';
 import moment from "moment";
+import {Link} from "react-router-dom";
+import useLocalStorage from "../hooks/Storage";
 
 const HomePage = () => {
+    const storage = useLocalStorage ("userData")
+    const userHeader = storage.getObject()
+
     const now = moment().format('DD/MMM/YYYY');
     const usersData = [{
         id: 1,
@@ -27,6 +32,7 @@ const HomePage = () => {
 
     const users = useRef(usersData); //está usando o current por causa do ref
     const [counter, setCounter] = useState(users.current.length)
+    console.log(storage.getObject())
 
     const addUser = (user) => {
         user.id = users.current.length + 1;
@@ -49,9 +55,10 @@ const HomePage = () => {
     const menu = (
         <Menu>
             <Menu.Item>
-                <a href="/">
+                <Link to="/" >
                     <Icon type="logout"/> Sair
-                </a>
+                </Link>
+
             </Menu.Item>
         </Menu>);
 
@@ -85,7 +92,7 @@ const HomePage = () => {
                         <h1 style={{marginLeft: 25, fontSize: 25}}>Registrar Venda</h1>
                         <Dropdown overlay={menu} style={{backgroundColor: "blue", position: "relative"}}>
                             <Button className={"p-userHeader"}
-                                    style={{position: "absolute", marginTop: 7}}><Icon type="user"/>JoaoVictor
+                                    style={{position: "absolute", marginTop: 7}}><Icon type="user"/>{userHeader?.username}
                             </Button>
                         </Dropdown>
                     </div>

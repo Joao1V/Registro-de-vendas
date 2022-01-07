@@ -1,21 +1,24 @@
 import React from 'react'
-import { BrowserRouter } from "react-router-dom";
-import { Routes, Route, Link } from "react-router-dom";
+
 import './custom.less';
 import 'antd/dist/antd.css';
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login"
+import {Route, BrowserRouter as Router, Switch} from "react-router-dom";
+import RegisterNewUser from "./pages/RegisterNewUser";
 
 const App = () => {
 
     return (
         <div style={{height:"100%"}}>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route path="/homepage" element={<HomePage/>}/>
-                </Routes>
-            </BrowserRouter>
+            <Router>
+                <Switch>
+                    <Route exact path="/"> <Login/> </Route>
+                    <Route path="/homepage"> <HomePage/> </Route>
+                    <Route path="/userRegister"> <RegisterNewUser/> </Route>
+                </Switch>
+            </Router>
+
         </div>
     )
 }
