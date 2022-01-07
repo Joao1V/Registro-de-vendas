@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import useLocalStorage from "../hooks/Storage";
 import {useHistory, Link} from "react-router-dom";
+import axios from "axios";
 
 
 const Login = () => {
@@ -11,12 +12,26 @@ const Login = () => {
     const storage = useLocalStorage("userData")
 
     const randomLogin = () => {
+
         if ( email.length >= 3 && password.length >= 4) {
-          let userObject = {
-              username: "jose",
-              email: email,
-              password: password
-          }
+            let userObject = {
+                username: "jose",
+                login: email,
+                senha: password,
+                aplicativo: "mscontratamais"
+            }
+
+            axios.post('https://apidev-club.crafty.work/acesso/signin', userObject, {headers: {
+                    Accept: 'application/json',
+                    'Content-Type': "application/json"
+                },})
+                .then(function (res) {
+                    console.log(res);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
           storage.setObject(userObject)
             history.push("/homepage");
         }

@@ -5,13 +5,18 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(168,168,175);
-  background: linear-gradient(90deg, rgba(168,168,175,1) 0%, rgba(193,193,201,1) 38%, rgba(236,236,240,1) 100%, rgba(81,84,84,1) 100%);
 }
 
 .p-userHeader {
   position: absolute;
   margin-top: 7px;
+}
+
+.border-input {
+  border: 1px solid gainsboro;
+  outline: none;
+  border-radius: 6px;
+
 }
 
 .card-login {
@@ -25,18 +30,34 @@ body {
   border-radius: 0.5rem;
   width: 50vw;
   margin-top: 4rem;
-  height: 60vh;
+  height: 80vh;
+}
+
+.card-register {
+  display: flex;
+  width: 80vw;
+  padding: 10px;
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+}
+
+.label-register{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 10px;
+}
+
+.card-register-inputs{
+  display: flex;
 }
 
 .field-login {
   font-family: 'Lexend Deca', sans-serif;
   font-weight: normal;
   border-radius: 6px;
-  width: 260px;
-  height: 35px;
   outline: none;
   border: none;
-  margin-top: 12px;
 }
 
 .button-login {
