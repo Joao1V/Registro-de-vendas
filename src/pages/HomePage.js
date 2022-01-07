@@ -1,9 +1,9 @@
 import React, {useRef, useState} from 'react'
-import '../custom.less';
-import {Layout, Menu, Icon, Dropdown, Button} from 'antd';
 import ListUsers from "../components/ListUsers";
 import UserRegister from "../components/UserRegister";
+import '../custom.less';
 import 'antd/dist/antd.css';
+import {Layout, Menu, Icon, Dropdown, Button} from 'antd';
 import moment from "moment";
 
 const HomePage = () => {
@@ -49,7 +49,7 @@ const HomePage = () => {
     const menu = (
         <Menu>
             <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+                <a href="/">
                     <Icon type="logout"/> Sair
                 </a>
             </Menu.Item>
