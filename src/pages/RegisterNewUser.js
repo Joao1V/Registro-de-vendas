@@ -1,19 +1,68 @@
 import React, {useEffect, useRef, useState} from "react";
-import useLocalStorage from "../hooks/Storage";
 import {useHistory, Link} from "react-router-dom";
 import axios from "axios";
-import {data} from "browserslist";
 import {maskCEP, maskCNPJ, maskCPF, maskPhone} from "../components/mask";
 import CheckBoxComp from "../components/CheckBoxComp";
+import {Checkbox} from "antd";
+import moment from "moment";
+import log from "tailwindcss/lib/util/log";
 
 
 const Login = () => {
 
-    const [counter, setCounter] = useState(0)
     const categories = useRef([])
+    const dayWeek = useRef([])
+    const [counter, setCounter] = useState(0)
     const [dataUsers, setDataUsers] = useState({})
+    const [days, setDays] = useState([{
+        day: `Domingo`,
+        init_hour: undefined,
+        end_hour:undefined,
+        checked: false,
+    },{
+        day: `Segunda`,
+        init_hour: undefined,
+        end_hour:undefined,
+        checked: false,
+    },{
+        day: `Terça`,
+        init_hour: undefined,
+        end_hour:undefined,
+        checked: false,
+    },{
+        day: `Quarta`,
+        init_hour: undefined,
+        end_hour:undefined,
+        checked: false,
+    },{
+        day: `Quinta`,
+        init_hour: undefined,
+        end_hour:undefined,
+        checked: false,
+    },{
+        day: `Sexta`,
+        init_hour: undefined,
+        end_hour:undefined,
+        checked: false,
+
+    },{
+        day: `Sábado`,
+        init_hour: undefined,
+        end_hour:undefined,
+        checked: false,
+    },])
+
+
+    console.log(days)
 
     let history = useHistory()
+
+    const getDay = (e) => {
+        let aux = days;
+        aux[e].checked = !aux[e].checked;
+        setDays(aux);
+        console.log(e.target.value)
+    }
 
     const getCategory = () => {
         axios.get(`https://apidev-club.crafty.work/app/categoria/all`, {headers: {
@@ -21,7 +70,6 @@ const Login = () => {
                 'Content-Type': "application/json"
             },})
             .then (function (res) {
-                console.log (res) ;
                 categories.current = res.data.object
                 setCounter(counter+1)
             })
@@ -74,12 +122,9 @@ const Login = () => {
         <div style={{display: "flex"}}>
             <div style={{ margin:"auto", display: "flex", marginTop: `2%`, border: `1px solid gainsboro`, borderRadius: 10}}>
                 <div style={{backgroundColor:"grey", display: "flex", flexDirection: "column", justifyContent: "center", padding: 20, borderTopLeftRadius: 10, borderBottomLeftRadius: 10}}>
-                    <div>
-                        <h1 style={{color: "#FFFFFF", fontSize:44, fontFamily: "Lexend Deca", fontWeight: 400}}>Cadastro</h1>
-                    </div>
-                    <div>
-                        <h2 style={{color: "#FFFFFF", fontSize:16, fontFamily: "Lexend Deca", fontWeight: 200, marginTop:-16}}>Comece a registrar suas vendas!</h2>
-                    </div>
+                   <div>
+                       <img src="../assets/undraw_personal_data_re_ihde.svg" alt=""/>
+                   </div>
                 </div>
                <div style={{padding: 20, flexDirection: "column"}}>
                    <div>
@@ -152,6 +197,41 @@ const Login = () => {
                                <input disabled={true} id={"uf"} className={"border-input"} title={"Unidade Federativa"} value={dataUsers?.estabelecimento_uf} type="text"/>
                            </label>
                        </div>
+                       <div style={{marginTop:16}}>
+                           <span>Selecione os horários de funcionamento da sua empresa.</span>
+                           <div style={{marginTop:12, display:"flex"}} className={""}>
+                               <label style={{marginRight:8}} htmlFor="horarioFuncionamento">Horário de Funcionamento de:
+                                       <input style={{marginLeft:8}} id={"horarioFuncionamento"} className={"border-input"} type="text" />
+                               </label>
+                               <label htmlFor={"a"}>a
+                                   <input style={{marginLeft:8}} id={"a"} className={"border-input"} onChange={(e) => {
+                                       setDataUsers( [{...dataUsers.horarios.horas_final(e.target.value)}])}} type="text"/>
+                               </label>
+                           </div>
+                           <div className={"card-register-inputs"} style={{marginTop:12}}>
+                                   <Checkbox type="checkbox" onChange={() => getDay(0)} checked={days[0].checked} className={"checkbox"} id={"domingo"}/>
+                                    <label htmlFor="domingo">Domingo</label>
+
+                                   <Checkbox type="checkbox" value={"Segunda"} className={"checkbox"} onChange={getDay} id={"segunda"}/>
+                                   <label htmlFor="segunda">Segunda-feira</label>
+
+                                   <Checkbox type="checkbox" value={"Terça"} className={"checkbox"} onChange={getDay} id={"terca"}/>
+                                   <label htmlFor="terca">Terça-feira</label>
+
+                                   <Checkbox type="checkbox"  className={"checkbox"} onChange={getDay} id={"quarta"}/>
+                                   <label htmlFor="quarta">Quarta-feira</label>
+
+                                   <Checkbox type="checkbox" className={"checkbox"} onChange={getDay} id={"quinta"}/>
+                                   <label htmlFor="quinta">Quinta-feira</label>
+
+                                   <Checkbox type="checkbox"  className={"checkbox"} onChange={getDay} id={"sexta"}/>
+                                   <label htmlFor="sexta">Sexta-feira</label>
+
+                                   <Checkbox type="checkbox"  className={"checkbox"} onChange={getDay} id={"sabado"}/>
+                                   <label htmlFor="sabado">Sábado</label>
+                               <button>printa</button>
+                           </div>
+                       </div>
                        <div style={{padding: 20, flexDirection: "column"}}>
                            <div >
                                <h2>Dados do responsável</h2>
@@ -197,7 +277,6 @@ const Login = () => {
                </div>
 
             </div>
-            <CheckBoxComp/>
         </div>
     )
 
