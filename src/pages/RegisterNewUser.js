@@ -101,12 +101,10 @@ const Login = () => {
     }
 
     return(
-        <div style={{display: "flex"}}>
+        <div style={{display: "flex", fontFamily:"Lexend Deca"}}>
             <div style={{ margin:"auto", display: "flex", marginTop: `2%`, border: `1px solid gainsboro`, borderRadius: 10}}>
-                <div style={{backgroundColor:"grey", display: "flex", flexDirection: "column", justifyContent: "center", padding: 20, borderTopLeftRadius: 10, borderBottomLeftRadius: 10}}>
-                   <div>
-                       <img src="../assets/undraw_personal_data_re_ihde.svg" alt=""/>
-                   </div>
+                <div style={{backgroundColor:"#001529", display: "flex", flexDirection: "column", justifyContent: "center", padding: 20, borderTopLeftRadius: 10, borderBottomLeftRadius: 10}}>
+
                 </div>
                <div style={{padding: 20, flexDirection: "column"}}>
                    <div>
@@ -249,7 +247,7 @@ const Login = () => {
                            </label>
                        </div>
                        <div style={{marginTop:16}}>
-                           <span>Selecione os horários de funcionamento da sua empresa.</span>
+                           <span style={{fontWeight:"bolder"}}>Selecione os horários de funcionamento da sua empresa.</span>
                            <div style={{marginTop:12, display:"flex"}}>
                                <label style={{marginRight:8}}
                                       htmlFor="horarioFuncionamento">Abre as
@@ -374,17 +372,14 @@ const Login = () => {
 
                            </div>
                        </div>
-                       <div style={{display: "flex", justifyContent: "space-between"}}>
-                           <button className="button-login" role="button" onClick={sendData}> Registrar </button>
-                           <button className="button-login" role="button" onClick={
-                               () => console.log(dataUsers)}> Print </button>
+                       <div style={{display: "flex", flexDirection:"column", justifyContent: "center", alignItems:"center"}}>
+                           <div>
+                               <button style={{fontSize:16}} className="button-login" role="button" onClick={sendData}> Registrar </button>
+                           </div>
 
-
-                           <span style={{marginTop:"2rem", fontSize:12, color:"#FFFFFF"}}>Já tem conta?
-                        <Link to={"/"}>
-                            <a className={"a-login"} href="">Faça o Login</a>
-                        </Link>
-                    </span>
+                               <span style={{marginTop:"1rem", fontSize:16}}>Já tem conta?
+                                    <Link to={"/"} style={{fontSize:16}}>Faça o Login</Link>
+                               </span>
                        </div>
                    </div>
 
